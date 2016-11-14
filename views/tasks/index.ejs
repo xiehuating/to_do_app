@@ -1,0 +1,22 @@
+<%- include('../header') %>
+    <h1>
+        Your tasks
+    </h1>
+
+    <% if (docs.length) {%>
+        <table>
+            <tr>
+                <th> tasks </th>
+            </tr>
+            <% for (var i=0; i<docs.length; i++ ) { %>
+            <tr>
+                <td> <%- task[i] %> </td>
+            </tr>
+            <% } %>
+
+        </table>
+
+    <% } else { %>
+        <p> You don't have any tasks! </p>
+    <% } %>
+<%- include('../footer') %>

@@ -6,11 +6,11 @@
     <% if (docs.length) {%>
         <table>
             <tr>
-                <th> tasks </th>
+                <th> Tasks </th>
             </tr>
-            <% for (var i=0; i<docs.length; i++ ) { %>
+            <% for (var i=0;i<docs.length;i++) { %>
             <tr>
-                <td> <%- task[i] %> </td>
+                <td> <%- docs[i]._id %> </td>
             </tr>
             <% } %>
 
@@ -19,4 +19,8 @@
     <% } else { %>
         <p> You don't have any tasks! </p>
     <% } %>
+
+    <p>
+        <a href="/tasks/new", class="btn primary"> Add a Task </a>
+    </p>
 <%- include('../footer') %>

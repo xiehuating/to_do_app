@@ -1,0 +1,27 @@
+<%- include('../header') %>
+
+    <h1>
+        New task view
+    </h1>
+
+    <form method="post" action="/tasks">
+        <fieldset>
+            <legend> 
+                Add a task
+            </legend>
+
+            <div class="clearfix">
+                <label> Task </label>
+                <div class="input">
+                    <input name="task[task]", class="xlarge">
+                </div>
+            </div>
+
+            <div class="actions">
+                    <input type="submit" value="Save" class="btn primary">
+                    <button type="reset" class="btn"> Cancel </button>
+            </div>
+        </fieldset>
+    </form>
+
+<%- include('../footer') %>

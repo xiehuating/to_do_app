@@ -25,4 +25,23 @@ router.get('/tasks', function(req,res){
   });
 });
 
+router.post('/tasks', function(req, res){
+  var task = new Task(req.body.task);
+  task.save(function(err) {
+    if (!err) {
+      res.redirect('/tasks');
+    } else {
+      res.redireect('/tasks/new');
+    }
+  });
+});
+
+
+
+router.get('/tasks/new', function(req, res){
+  res.render('tasks/new', {
+    title: 'New Task'
+  });
+});
+
 module.exports = router;

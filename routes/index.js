@@ -25,6 +25,12 @@ router.get('/tasks', function(req,res){
   });
 });
 
+router.get('/tasks/new', function(req, res){
+  res.render('tasks/new', {
+    title: 'New Task'
+  });
+});
+
 router.post('/tasks', function(req, res){
   var task = new Task(req.body.task);
   task.save(function(err) {
@@ -36,11 +42,34 @@ router.post('/tasks', function(req, res){
   });
 });
 
+router.get('/tasks/:id/edit', function(req, res){
+  Task.findById(req.params.id, function (err, doc){
+    res.render('tasks/edit', {
+      title: 'Edit Task View',
+      task: doc
+    });
+  });
+});
 
+router.put('/tasks/:id', function(req, res){
+  Task.findById(req.params.id, function(err, doc){
+    doc.task = req.body.task.task;
+    doc.save(function(err){
+      if (!err) {
+        res.redirect('/tasks');
+      } else {
+        res.send('err');
+      }
+    });
+  });
+});
 
-router.get('/tasks/new', function(req, res){
-  res.render('tasks/new', {
-    title: 'New Task'
+router.delete('/tasks/:id', function(req,res){
+  Task.findById(req.params.id, function(err, doc){
+    if(!doc) return next(new NotFound('Document not Found'));
+    doc.remove(function(){
+      res.redirect('/tasks');
+    });
   });
 });
 

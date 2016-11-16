@@ -13,7 +13,7 @@
                 <td> <%= docs[i].task %> </td>
                 <td> <a class="btn" href="/tasks/edit/<%= docs[i].id %>" >Edit</a></td>
                 <td> 
-                    <form method="post" action="/tasks/<%= docs[i].id %>">
+                    <form method="post" action="/tasks/delete/<%= docs[i].id %>">
                         <input name="_method" value="DELETE" type="hidden">
                         <button class="btn" type="submit">Delete</button>
 

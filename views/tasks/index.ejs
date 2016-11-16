@@ -10,8 +10,8 @@
             </tr>
             <% for (var i=0;i<docs.length;i++) { %>
             <tr>
-                <td> <%= docs.task %> </td>
-                <td> <a class="btn" href="/tasks/<%= docs[i].id %>/edit" >Edit</a></td>
+                <td> <%= docs[i].task %> </td>
+                <td> <a class="btn" href="/tasks/edit/<%= docs[i].id %>" >Edit</a></td>
                 <td> 
                     <form method="post" action="/tasks/<%= docs[i].id %>">
                         <input name="_method" value="DELETE" type="hidden">

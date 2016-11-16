@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var ObjectId = Schema.objectId;
-
+mongoose.Promise = require('bluebird');
 var Task = new Schema({
   task: String
 })
@@ -32,7 +32,9 @@ router.get('/tasks/new', function(req, res){
 });
 
 router.post('/tasks', function(req, res){
-  var task = new Task(req.body.task);
+  var task = new Task({
+    task:req.body.task
+  });
   task.save(function(err) {
     if (!err) {
       res.redirect('/tasks');
@@ -42,7 +44,7 @@ router.post('/tasks', function(req, res){
   });
 });
 
-router.get('/tasks/:id/edit', function(req, res){
+router.get('/tasks/edit/:id', function(req, res){
   Task.findById(req.params.id, function (err, doc){
     res.render('tasks/edit', {
       title: 'Edit Task View',
@@ -51,9 +53,9 @@ router.get('/tasks/:id/edit', function(req, res){
   });
 });
 
-router.put('/tasks/:id', function(req, res){
+router.post('/tasks/edit/:id', function(req, res){
   Task.findById(req.params.id, function(err, doc){
-    doc.task = req.body.task.task;
+    doc.task = req.body.task;
     doc.save(function(err){
       if (!err) {
         res.redirect('/tasks');
@@ -64,7 +66,7 @@ router.put('/tasks/:id', function(req, res){
   });
 });
 
-router.delete('/tasks/:id', function(req,res){
+router.post('/tasks/:id', function(req,res){
   Task.findById(req.params.id, function(err, doc){
     if(!doc) return next(new NotFound('Document not Found'));
     doc.remove(function(){

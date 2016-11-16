@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var app = express();
 
 //
-mongoose.connect('mongodb://localhost/todo_development', function(err){
+mongoose.connect('mongodb://localhost:27017/todo_development', function(err){
   if (!err) {
     console.log('connect to MongoDB');
   } else {

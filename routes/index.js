@@ -13,7 +13,7 @@ var Task = mongoose.model('Task', Task);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.redirect('/tasks');
 });
 
 router.get('/tasks', function(req,res){

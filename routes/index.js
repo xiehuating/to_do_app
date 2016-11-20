@@ -44,7 +44,7 @@ router.get('/tasks/new', function(req, res){
 });
 
 //post提交新创建的task
-router.post('/tasks/new', function(req, res){
+router.post('/tasks', function(req, res){
   //创建数据库实体Entity，这里创建的是一个文档实例
   var task = new TaskModel({
     task:req.body.task
